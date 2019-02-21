@@ -215,6 +215,12 @@ namespace AWSS3
         /// <param name="filePath">Full path to file</param>
         public void PutFile(string bucketName, string filePath)
         {
+            if(string.IsNullOrEmpty(bucketName))
+                throw new ArgumentNullException(nameof(bucketName));
+
+            if(string.IsNullOrEmpty(filePath))
+                throw new ArgumentNullException(nameof(filePath));
+
             PutObjectRequest s3PutObjectRequest = new PutObjectRequest();
             s3PutObjectRequest.BucketName = bucketName;
             s3PutObjectRequest.FilePath = filePath;
@@ -241,6 +247,12 @@ namespace AWSS3
         /// <param name="fileName">File name</param>
         public void DeleteFile(string bucketName, string fileName)
         {
+            if(string.IsNullOrEmpty(bucketName))
+                throw new ArgumentNullException(nameof(bucketName));
+
+            if(string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException(nameof(fileName));
+
             try
             {
                 DeleteObjectRequest s3DeleteObjectRequest = new DeleteObjectRequest();
@@ -269,6 +281,15 @@ namespace AWSS3
         /// <param name="versionId">File version</param>
         public void DeleteFile(string bucketName, string fileName, string versionId)
         {
+            if(string.IsNullOrEmpty(bucketName))
+                throw new ArgumentNullException(nameof(bucketName));
+
+            if(string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException(nameof(fileName));
+
+            if(string.IsNullOrEmpty(versionId))
+                throw new ArgumentNullException(nameof(versionId));
+
             try
             {
                 DeleteObjectRequest s3DeleteObjectRequest = new DeleteObjectRequest();
@@ -294,6 +315,8 @@ namespace AWSS3
         /// <param name="bucketName">Name of the bucket</param>
         public void CreateBucket(string bucketName)
         {
+            if(string.IsNullOrEmpty(bucketName))
+                throw new ArgumentNullException(nameof(bucketName));
             
             PutBucketRequest s3PutBucketRequest = new PutBucketRequest();
             s3PutBucketRequest.BucketName = bucketName;
