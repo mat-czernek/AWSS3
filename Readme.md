@@ -14,6 +14,7 @@ List of the operations on S3 service included into this project:
 * Delete file
 * Delete file by version
 * Create none public bucket (blocking public policies and ACLs)
+* Delete bucket
 
 # Authentication
 
