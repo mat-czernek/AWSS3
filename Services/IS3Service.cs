@@ -65,9 +65,16 @@ namespace AWSS3
         void DeleteFile(string bucketName, string fileName, string versionId);
 
         /// <summary>
-        /// Method creates new bucket in S3 with no public access
+        /// Method creates new bucket in S3
         /// </summary>
         /// <param name="bucketName">Name of the bucket</param>
-        void CreateBucket(string bucketName);
+        /// <param name="disablePublicAccess">Set to true if you want to disable public access to your bucket, set to false if you want to enable public access to your bucket</param>
+        void CreateBucket(string bucketName, bool disablePublicAccess = true);
+
+        /// <summary>
+        /// Method deletes bucket from the S3
+        /// </summary>
+        /// <param name="bucketName">Name of the bucket</param>
+        void DeleteBucket(string bucketName);
     }
 }

@@ -310,10 +310,37 @@ namespace AWSS3
         }
 
         /// <summary>
+        /// Method deletes bucket from the S3
+        /// </summary>
+        /// <param name="bucketName">Name of the bucket</param>
+        public void DeleteBucket(string bucketName)
+        {
+            if(string.IsNullOrEmpty(bucketName))
+                throw new ArgumentNullException(nameof(bucketName));
+
+            DeleteBucketRequest s3DeleteBucketRequest = new DeleteBucketRequest();
+            s3DeleteBucketRequest.BucketName = bucketName;
+            s3DeleteBucketRequest.UseClientRegion = true;
+
+            try
+            {
+                Task<DeleteBucketResponse> s3DeleteBucketResponse = _client.DeleteBucketAsync(s3DeleteBucketRequest);
+
+                Console.WriteLine($"HTTP status code : {s3DeleteBucketResponse.Result.HttpStatusCode}");
+            }
+            catch(System.AggregateException ex)
+            {
+                if(ex.InnerException != null)
+                    Console.WriteLine($"Message: {ex.InnerException.Message}");
+            }
+        }
+
+        /// <summary>
         /// Method creates new bucket in S3
         /// </summary>
         /// <param name="bucketName">Name of the bucket</param>
-        public void CreateBucket(string bucketName)
+        /// <param name="disablePublicAccess">Set to true if you want to disable public access to your bucket, set to false if you want to enable public access to your bucket</param>
+        public void CreateBucket(string bucketName, bool disablePublicAccess = true)
         {
             if(string.IsNullOrEmpty(bucketName))
                 throw new ArgumentNullException(nameof(bucketName));
