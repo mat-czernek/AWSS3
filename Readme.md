@@ -2,7 +2,7 @@
 
 Simple project to present basic operations on Amazon Web Services S3.
 
-# Current state
+# Features
 
 List of the operations on S3 service included into this project:
 
