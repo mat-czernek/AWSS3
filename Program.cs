@@ -19,8 +19,6 @@ namespace AWSS3
                 AuthenticationConfiguration.AccessKey, 
                 AuthenticationConfiguration.SecretKey,
                 RegionEndpoint.EUCentral1);
-
-            s3Service.DeleteBucket("herktestsecond");
         }
 
         private static void SetupEnvironment()
