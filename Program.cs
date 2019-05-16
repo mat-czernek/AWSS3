@@ -13,6 +13,7 @@ namespace AWSS3
 
         static void Main(string[] args)
         {
+            
             SetupEnvironment();
 
             IS3Service s3Service = new S3Service(
